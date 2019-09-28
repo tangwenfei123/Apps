@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom menu base on treebeard
     'treebeard',
+    'cdxt'
 
 
 ]
@@ -121,4 +122,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # 具体路径
+]
+
+MEDIA_ROOT = [
+
+    os.path.join(BASE_DIR,"media")
 ]
