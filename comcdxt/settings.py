@@ -29,17 +29,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'adminlteui',
+    'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # custom menu base on treebeard
-    'treebeard',
     'cdxt'
-
 
 ]
 
@@ -126,5 +123,72 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = [
 
-    os.path.join(BASE_DIR,"media")
+    os.path.join(BASE_DIR, "media")
 ]
+
+# simpleui 配置
+
+# 首页配置
+SIMPLEUI_HOME_PAGE = 'https://www.baidu.com'
+# 首页标题
+SIMPLEUI_HOME_TITLE = '百度一下你就知道'
+# 配置首页LOGO
+SIMPLEUI_LOGO = 'https://avatars2.githubusercontent.com/u/13655483?s=60&v=4'
+# 服务器信息
+SIMPLEUI_HOME_INFO = True
+# 快速操作
+SIMPLEUI_HOME_QUICK = True
+# 最近动作
+SIMPLEUI_HOME_ACTION = True
+"""
+菜单配置说明
+
+字段	    说明
+name	菜单名
+icon	图标，参考element-ui和fontawesome图标
+url	    链接地址，绝对或者相对,如果存在models字段，将忽略url
+models	子菜单
+
+"""
+
+import time
+
+SIMPLEUI_CONFIG = {
+    'system_keep': False,
+    'menu_display': ['Simpleui', '测试', '权限认证', '动态菜单测试'],  # 开启排序和过滤功能, 不填此字段为默认排序和全部显示, 空列表[] 为全部不显示.
+    'dynamic': True,  # 设置是否开启动态菜单, 默认为False. 如果开启, 则会在每次用户登陆时动态展示菜单内容
+    'menus': [{
+        'name': 'Simpleui',
+        'icon': 'fas fa-code',
+        'url': 'https://gitee.com/tompeppa/simpleui'
+    }, {
+        'app': 'auth',
+        'name': '权限认证',
+        'icon': 'fas fa-user-shield',
+        'models': [{
+            'name': '用户',
+            'icon': 'fa fa-user',
+            'url': 'auth/user/'
+        }]
+    }, {
+        'name': '测试',
+        'icon': 'fa fa-file',
+        'models': [{
+            'name': 'Baidu',
+            'url': 'http://baidu.com',
+            'icon': 'far fa-surprise'
+        }, {
+            'name': '内网穿透',
+            'url': 'https://www.wezoz.com',
+            'icon': 'fab fa-github'
+        }]
+    }, {
+        'name': '动态菜单测试',
+        'icon': 'fa fa-desktop',
+        'models': [{
+            'name': time.time(),
+            'url': 'http://baidu.com',
+            'icon': 'far fa-surprise'
+        }]
+    }]
+}
